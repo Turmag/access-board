@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": ".",
+        "lib": ["esnext", "dom"],
+        "module": "esnext",
+        "moduleResolution": "node",
+        "paths": {
+            "@assets/*": ["src/assets/*"],
+            "@components/*": ["src/components/*"],
+            "@shared/*": ["src/shared/*"],
+            "@/*": ["src/*"]
+        },
+        "strict": true,
+        "target": "esnext",
+        "types": ["node", "vite/client"]
+    },
+    "include": [
+        "./**/*",
+        ".eslintrc.js",
+        "**/*/*.json",
+        "package.json"
+    ]
+}

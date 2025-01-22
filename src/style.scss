@@ -1,0 +1,47 @@
+:root {
+    font-family: Inter, Verdana, Avenir, Helvetica, Arial, sans-serif;
+    font-synthesis: none;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-size-adjust: 100%;
+
+    --background-color: #fff;
+    --color: #0e1b3e;
+    --help-background-color: #ecf0f1;
+    --help-background-border: #ddd;
+}
+
+body {
+    display: flex;
+    min-width: 500px;
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--background-color);
+    font-size: 16px;
+
+    &.dark {
+        /** Тёмная тема **/
+        --background-color: #171e31;
+        --color: #a3deff;
+        --help-background-color: #130f0e;
+        --help-background-border: #222;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+#app {
+    width: 100%;
+}
+
+img {
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+a {
+    color: #08f;
+}
