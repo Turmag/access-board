@@ -19,8 +19,8 @@
 </template>
 
 <script setup lang="ts">
-import SvgIcon from '@/components/common/SvgIcon.vue';
-import Switch from '@/components/header/Switch.vue';
+import SvgIcon from '../common/SvgIcon.vue';
+import Switch from './Switch.vue';
 import { authStore } from '@/stores/auth.store';
 
 const authStoreVar = authStore();

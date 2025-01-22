@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import { useStorage } from '@vueuse/core';
-import SvgIcon from '@/components/common/SvgIcon.vue';
+import SvgIcon from '../common/SvgIcon.vue';
 import { useStore } from '@/stores/main.store';
 
 const store = useStore();
