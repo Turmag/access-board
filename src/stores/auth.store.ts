@@ -10,8 +10,7 @@ export const authStore = defineStore('auth', {
         async checkAuthorize() {
             try {
                 const { path } = useInject();
-                console.log('path', path);
-                const { data: result } = await Api.checkAuthorize();
+                const { data: result } = await Api.checkAuthorize(path);
                 if (result === 'success') {
                     this.isAuthorized = true;
                 }
@@ -26,11 +25,12 @@ export const authStore = defineStore('auth', {
         },
 
         async login(password: string) {
+            const { path } = useInject();
             let text = 'Пароль введён неверно';
             let type = 'error';
 
             try {
-                const { data: result } = await Api.authorize(password);
+                const { data: result } = await Api.authorize(path, password);
                 if (result === 'success') {
                     text = 'Всё прекрасно!';
                     type = 'success';
@@ -49,7 +49,8 @@ export const authStore = defineStore('auth', {
 
         async logout() {
             try {
-                const { data: result } = await Api.logout();
+                const { path } = useInject();
+                const { data: result } = await Api.logout(path);
                 if (result === 'success') {
                     this.isAuthorized = false;
                 }

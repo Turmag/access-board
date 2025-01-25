@@ -1,0 +1,21 @@
+[
+    {
+        "name": "Тестовое имя",
+        "category": "Тест",
+        "items": [
+            {
+                "name": "Логин",
+                "value": "test@yandex.ru"
+            },
+            {
+                "name": "Пароль",
+                "value": "testpasswordasd!asdfDDDD"
+            },
+            {
+                "name": "Сайт",
+                "value": "https://www.yandex.ru",
+                "isLink": true
+            }
+        ]
+    }
+]

@@ -1,5 +1,6 @@
 import { notify } from '@kyvg/vue3-notification';
 import { defineStore } from 'pinia';
+import { useInject } from '@shared/composables/useInject';
 import type { IMainStore } from '@/shared/types';
 import Api from '@shared/api/CommonApi';
 
@@ -20,7 +21,8 @@ export const useStore = defineStore('main', {
 
             this.isLoadingServices = true;
             try {
-                const { data: { services, categories } } = await Api.getServices();
+                const { path } = useInject();
+                const { data: { services, categories } } = await Api.getServices(path);
                 this.services = services;
                 this.categories = categories;
             } catch (error) {
