@@ -5,11 +5,13 @@ import {
     watch,
     watchEffect,
 } from 'vue';
-import type { IMainStore } from '@/shared/types';
+import { useInject } from '@shared/composables/useInject';
 
-export function useTheme(store: IMainStore) {
-    const isDarkMode = useStorage(store.darkModeName, false);
-    const isSavedDarkMode = useStorage(store.savedDarkModeName, false);
+export function useTheme() {
+    const { darkModeName, savedDarkModeName } = useInject();
+
+    const isDarkMode = useStorage(darkModeName, false);
+    const isSavedDarkMode = useStorage(savedDarkModeName, false);
     const matches = ref(true);
 
     const setDarkMode = () => {

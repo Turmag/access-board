@@ -1,6 +1,6 @@
 import { notify } from '@kyvg/vue3-notification';
 import { defineStore } from 'pinia';
-import { inject } from 'vue';
+import { useInject } from '@shared/composables/useInject';
 import Api from '@shared/api/AuthApi';
 
 export const authStore = defineStore('auth', {
@@ -9,7 +9,8 @@ export const authStore = defineStore('auth', {
     actions: {
         async checkAuthorize() {
             try {
-                console.log('inject path', inject('path'));
+                const { path } = useInject();
+                console.log('path', path);
                 const { data: result } = await Api.checkAuthorize();
                 if (result === 'success') {
                     this.isAuthorized = true;

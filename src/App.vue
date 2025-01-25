@@ -7,24 +7,14 @@
 </template>
 
 <script setup lang="ts">
-import { useTheme } from '@shared/useTheme';
 import { ref, watch } from 'vue';
 import Header from '@/components/header/Header.vue';
 import Loader from '@/components/Loader.vue';
 import Login from '@/components/Login.vue';
 import Main from '@/components/main/Main.vue';
+import { useTheme } from '@shared/composables/useTheme';
 import { authStore } from '@/stores/auth.store';
 import { useStore } from '@/stores/main.store';
-
-interface IProps {
-    darkModeName?: string;
-    savedDarkModeName?: string;
-}
-
-const props = withDefaults(defineProps<IProps>(), {
-    darkModeName: 'isDarkModeAccessBoard',
-    savedDarkModeName: 'isSavedDarkModeAccessBoard',
-});
 
 const store = useStore();
 const authStoreVar = authStore();
@@ -39,9 +29,7 @@ watch(
 );
 
 const init = async () => {
-    store.darkModeName = props.darkModeName;
-    store.savedDarkModeName = props.savedDarkModeName;
-    useTheme(store);
+    useTheme();
     await authStoreVar.checkAuthorize();
     isAuthorizeChecking.value = false;
 
