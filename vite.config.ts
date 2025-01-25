@@ -14,6 +14,15 @@ export default defineConfig(({ mode }: { mode: string }) => ({
             '@': path.resolve(__dirname, './src'),
         },
     },
+    server: {
+        proxy: {
+            '/api': {
+                changeOrigin: true,
+                rewrite: (path: string) => path.replace(/^\/api/, ''),
+                target: 'https://focusinfo.ru/access-board/api',
+            },
+        },
+    },
     build: {
         lib: {
             // Could also be a dictionary or array of multiple entry points

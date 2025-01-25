@@ -16,7 +16,9 @@
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview",
-        "generate-icons-idx": "node .\\node-files\\generateIconsIndex.js"
+        "generate-icons-idx": "node .\\node-files\\generateIconsIndex.js",
+        "df": "scp -r files/* u2250830@37.140.192.227:./www/focusinfo.ru/access-board/files",
+        "dapi": "scp -r api/* u2250830@37.140.192.227:./www/focusinfo.ru/access-board/api"
     },
     "dependencies": {
         "@kyvg/vue3-notification": "^2.9.1",
