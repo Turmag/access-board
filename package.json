@@ -1,8 +1,17 @@
 {
     "name": "access-board",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "type": "module",
-    "main": "./src/index.ts",
+    "files": ["dist"],
+    "main": "./dist/vue-access-board.umd.cjs",
+    "module": "./dist/vue-access-board.js",
+    "exports": {
+        ".": {
+            "import": "./dist/vue-access-board.js",
+            "require": "./dist/vue-access-board.umd.cjs"
+        },
+        "./style.css": "./dist/vue-access-board.css"
+    },
     "scripts": {
         "dev": "vite",
         "build": "vite build",
