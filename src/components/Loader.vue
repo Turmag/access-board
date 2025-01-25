@@ -29,7 +29,7 @@ defineProps({
         align-items: center;
         width: 100%;
         height: calc(100% - 115px);
-        color: var(--background-color);
+        color: var(--color);
     }
 
     .img {

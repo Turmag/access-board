@@ -1,6 +1,6 @@
 {
     "name": "access-board",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "type": "module",
     "files": ["dist"],
     "main": "./dist/vue-access-board.umd.cjs",
