@@ -29,7 +29,8 @@ watch(
 );
 
 const init = async () => {
-    useTheme();
+    store.setVariablesFromInject();
+    useTheme(store);
     await authStoreVar.checkAuthorize();
     isAuthorizeChecking.value = false;
 

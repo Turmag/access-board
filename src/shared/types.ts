@@ -20,6 +20,7 @@ export interface IMainStore {
     darkModeName: string;
     filterWord: string;
     isLoadingServices: boolean;
+    path: string;
     savedDarkModeName: string;
     selectedCategory: string;
     services: IService[];

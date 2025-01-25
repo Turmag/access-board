@@ -1,6 +1,6 @@
 import { notify } from '@kyvg/vue3-notification';
 import { defineStore } from 'pinia';
-import { useInject } from '@shared/composables/useInject';
+import { useStore } from '@/stores/main.store';
 import Api from '@shared/api/AuthApi';
 
 export const authStore = defineStore('auth', {
@@ -9,8 +9,8 @@ export const authStore = defineStore('auth', {
     actions: {
         async checkAuthorize() {
             try {
-                const { path } = useInject();
-                const { data: result } = await Api.checkAuthorize(path);
+                const store = useStore();
+                const { data: result } = await Api.checkAuthorize(store.path);
                 if (result === 'success') {
                     this.isAuthorized = true;
                 }
@@ -25,12 +25,12 @@ export const authStore = defineStore('auth', {
         },
 
         async login(password: string) {
-            const { path } = useInject();
+            const store = useStore();
             let text = 'Пароль введён неверно';
             let type = 'error';
 
             try {
-                const { data: result } = await Api.authorize(path, password);
+                const { data: result } = await Api.authorize(store.path, password);
                 if (result === 'success') {
                     text = 'Всё прекрасно!';
                     type = 'success';
@@ -49,8 +49,8 @@ export const authStore = defineStore('auth', {
 
         async logout() {
             try {
-                const { path } = useInject();
-                const { data: result } = await Api.logout(path);
+                const store = useStore();
+                const { data: result } = await Api.logout(store.path);
                 if (result === 'success') {
                     this.isAuthorized = false;
                 }

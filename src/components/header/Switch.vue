@@ -30,11 +30,11 @@
 <script setup lang="ts">
 import { useStorage } from '@vueuse/core';
 import SvgIcon from '@/components/common/SvgIcon.vue';
-import { useInject } from '@shared/composables/useInject';
+import { useStore } from '@/stores/main.store';
 
-const { darkModeName, savedDarkModeName } = useInject();
-const isDarkMode = useStorage(darkModeName, false);
-const isSavedDarkMode = useStorage(savedDarkModeName, false);
+const store = useStore();
+const isDarkMode = useStorage(store.darkModeName, false);
+const isSavedDarkMode = useStorage(store.savedDarkModeName, false);
 
 const toggle = () => {
     const bodyClass = document.body.classList;

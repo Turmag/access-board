@@ -1,6 +1,6 @@
 import { notify } from '@kyvg/vue3-notification';
 import { defineStore } from 'pinia';
-import { useInject } from '@shared/composables/useInject';
+import { inject } from 'vue';
 import type { IMainStore } from '@/shared/types';
 import Api from '@shared/api/CommonApi';
 
@@ -13,16 +13,22 @@ export const useStore = defineStore('main', {
         isLoadingServices: false,
         darkModeName: '',
         savedDarkModeName: '',
+        path: '',
     }),
 
     actions: {
+        setVariablesFromInject() {
+            this.path = inject('path') || '';
+            this.darkModeName = inject('darkModeName') || 'isDarkModeAccessBoard';
+            this.savedDarkModeName = inject('savedDarkModeName') || 'isSavedDarkModeAccessBoard';
+        },
+
         async getServices() {
             if (this.isLoadingServices) return;
 
             this.isLoadingServices = true;
             try {
-                const { path } = useInject();
-                const { data: { services, categories } } = await Api.getServices(path);
+                const { data: { services, categories } } = await Api.getServices(this.path);
                 this.services = services;
                 this.categories = categories;
             } catch (error) {
