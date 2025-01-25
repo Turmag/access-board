@@ -6,6 +6,7 @@ export const useInject = () => {
     const savedDarkModeName: string = inject('savedDarkModeName') || 'isSavedDarkModeAccessBoard';
 
     console.log('useInject path', path);
+    console.log('inject path', inject('path'));
 
     return {
         darkModeName,
