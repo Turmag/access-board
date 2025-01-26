@@ -1,7 +1,10 @@
 {
     "name": "access-board",
-    "version": "0.0.18",
+    "version": "0.0.19",
     "type": "module",
+    "description": "Turmag's reusable access-board",
+    "author": "Pavel Vinogradov",
+    "license": "MIT",
     "files": ["dist"],
     "main": "./dist/vue-access-board.umd.cjs",
     "module": "./dist/vue-access-board.js",
@@ -12,6 +15,12 @@
         },
         "./style.css": "./dist/vue-access-board.css"
     },
+    "keywords": [
+        "access",
+        "board",
+        "typescript",
+        "vue"
+    ],
     "scripts": {
         "dev": "vite",
         "build": "vite build",
