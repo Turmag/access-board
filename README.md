@@ -7,11 +7,15 @@
 Скачиваем пакет access-board:
 ```
 npm i access-board
+```
 
-# Или запустите с помощью yarn
+Или запустите с помощью yarn
+```
 yarn add access-board
+```
 
-# Или запустите с помощью pnpm
+Или запустите с помощью pnpm
+```
 pnpm add access-board
 ```
 
@@ -45,11 +49,13 @@ app.mount('#app');
 Установить его просто:
 ```
 npm i typescript --save-dev
-
-# Или запустите с помощью yarn
+```
+Или с помощью yarn
+```
 yarn add typescript --dev
-
-# Или запустите с помощью pnpm
+```
+Или запустите с помощью pnpm
+``` 
 pnpm add typescript --save-dev
 ```
 
@@ -62,22 +68,26 @@ git clone https://github.com/Turmag/access-board.git
 2. Разверните окружение, установив все необходимые пакеты:
 ```
 npm i
-
-# Или с помощью yarn
+```
+Или с помощью yarn
+```
 yarn
-
-# Или с помощью pnpm
+```
+Или с помощью pnpm
+```
 pnpm
 ```
 3. Запустите приложение:
 ```
 npm run dev
-
-# Или с помощью yarn
+```
+Или с помощью yarn
+```
 yarn dev
-
-# Или с помощью pnpm
+```
+Или с помощью pnpm
+```
 pnpm dev
 ```
-4. Зайдите, направ пароль **test**
+4. Зайдите, набрав пароль **test**
 5. Оцените интерфейс :)
