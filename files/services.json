@@ -17,5 +17,38 @@
                 "isLink": true
             }
         ]
+    },
+    {
+        "name": "Lichess",
+        "category": "Игры",
+        "items": [
+            {
+                "name": "Логин",
+                "value": "test@google.com"
+            },
+            {
+                "name": "Пароль",
+                "value": "AWEsomePassword!123"
+            },
+            {
+                "name": "Сайт",
+                "value": "https://lichess.org",
+                "isLink": true
+            }
+        ]
+    },
+    {
+        "name": "Steam",
+        "category": "Игры",
+        "items": [
+            {
+                "name": "Логин",
+                "value": "steamlogin"
+            },
+            {
+                "name": "Пароль",
+                "value": "AWEsomePass!123"
+            }
+        ]
     }
 ]
