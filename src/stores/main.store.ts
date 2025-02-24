@@ -1,46 +1,55 @@
 import { notify } from '@kyvg/vue3-notification';
 import { defineStore } from 'pinia';
-import { inject } from 'vue';
-import type { IMainStore } from '@/shared/types';
+import { inject, ref } from 'vue';
+import type { IService } from '@/shared/types';
 import Api from '@shared/api/CommonApi';
 
-export const useStore = defineStore('main', {
-    state: (): IMainStore => ({
-        filterWord: '',
-        services: [],
-        categories: [],
-        selectedCategory: '',
-        isLoadingServices: false,
-        darkModeName: '',
-        savedDarkModeName: '',
-        path: '',
-    }),
+export const useStore = defineStore('main', () => {
+    const filterWord = ref('');
+    const services = ref<IService[]>([]);
+    const categories = ref<string[]>([]);
+    const selectedCategory = ref('');
+    const isLoadingServices = ref(false);
+    const darkModeName = ref('');
+    const savedDarkModeName = ref('');
+    const path = ref('');
 
-    actions: {
-        setVariablesFromInject() {
-            this.path = inject('path') || '';
-            this.darkModeName = inject('darkModeName') || 'isDarkModeAccessBoard';
-            this.savedDarkModeName = inject('savedDarkModeName') || 'isSavedDarkModeAccessBoard';
-        },
+    const setVariablesFromInject = () => {
+        path.value = inject('path') || '';
+        darkModeName.value = inject('darkModeName') || 'isDarkModeAccessBoard';
+        savedDarkModeName.value = inject('savedDarkModeName') || 'isSavedDarkModeAccessBoard';
+    };
 
-        async getServices() {
-            if (this.isLoadingServices) return;
+    const getServices = async () => {
+        if (isLoadingServices.value) return;
 
-            this.isLoadingServices = true;
-            try {
-                const { data: { services, categories } } = await Api.getServices(this.path);
-                this.services = services;
-                this.categories = categories;
-            } catch (error) {
-                console.error('error', error);
-                notify({
-                    title: 'Получение данных',
-                    text: 'Получение данных не увенчалось успехом',
-                    type: 'error',
-                });
-            }
+        isLoadingServices.value = true;
+        try {
+            const { data: { services: servicesResponse, categories: categoriesResponse } } = await Api.getServices(path.value);
+            services.value = servicesResponse;
+            categories.value = categoriesResponse;
+        } catch (error) {
+            console.error('error', error);
+            notify({
+                title: 'Получение данных',
+                text: 'Получение данных не увенчалось успехом',
+                type: 'error',
+            });
+        }
 
-            this.isLoadingServices = false;
-        },
-    },
+        isLoadingServices.value = false;
+    };
+
+    return {
+        filterWord,
+        services,
+        categories,
+        selectedCategory,
+        isLoadingServices,
+        darkModeName,
+        savedDarkModeName,
+        path,
+        setVariablesFromInject,
+        getServices,
+    };
 });
