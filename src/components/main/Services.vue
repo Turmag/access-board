@@ -19,7 +19,8 @@ const store = useStore();
 
 const filteredServices = computed((): IService[] =>
     store.services.filter(service => {
-        const isFiltered = service.name.toLowerCase().includes(store.filterWord.toLowerCase());
+        const items = service.items;
+        const isFiltered = service.name.toLowerCase().includes(store.filterWord.toLowerCase()) || items.some(item => item.value.toLowerCase().includes(store.filterWord.toLowerCase()));
         return isFiltered && store.selectedCategory
             ? service?.category?.includes(store.selectedCategory)
             : isFiltered;
