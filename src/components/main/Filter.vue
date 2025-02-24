@@ -22,9 +22,9 @@
 import { useDebounceFn } from '@vueuse/core';
 import { ref, watch } from 'vue';
 import SvgIcon from '@/components/common/SvgIcon.vue';
-import { useStore } from '@/stores/main.store';
+import { mainStore } from '@/stores/main.store';
 
-const store = useStore();
+const store = mainStore();
 
 const filterWord = ref('');
 

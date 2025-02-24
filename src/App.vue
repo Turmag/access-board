@@ -12,29 +12,34 @@ import Header from '@/components/header/Header.vue';
 import Loader from '@/components/Loader.vue';
 import Login from '@/components/Login.vue';
 import Main from '@/components/main/Main.vue';
+import { useScrollPosition } from '@/shared/composables/useScrollPosition';
 import { useTheme } from '@shared/composables/useTheme';
 import { authStore } from '@/stores/auth.store';
-import { useStore } from '@/stores/main.store';
+import { mainStore } from '@/stores/main.store';
 
-const store = useStore();
+const store = mainStore();
 const authStoreVar = authStore();
 
 const isAuthorizeChecking = ref(true);
 
+const loadServices = async () => {
+    if (authStoreVar.isAuthorized && !store.services.length) {
+        await store.getServices();
+        store.isLoadedPage = true;
+    }
+};
+
 watch(
     () => authStoreVar.isAuthorized,
-    value => {
-        if (value && !store.services.length) store.getServices();
-    },
+    () => loadServices(),
 );
 
 const init = async () => {
     store.setVariablesFromInject();
-    useTheme(store);
+    useTheme();
+    useScrollPosition();
     await authStoreVar.checkAuthorize();
     isAuthorizeChecking.value = false;
-
-    if (authStoreVar.isAuthorized) store.getServices();
 };
 
 init();

@@ -15,13 +15,7 @@ export interface IServiceResponse {
     services: IService[];
 }
 
-export interface IMainStore {
-    categories: string[];
-    darkModeName: string;
-    filterWord: string;
-    isLoadingServices: boolean;
-    path: string;
-    savedDarkModeName: string;
-    selectedCategory: string;
-    services: IService[];
+export interface IScrollTopObject {
+    time: number;
+    top: number;
 }

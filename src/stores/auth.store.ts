@@ -1,7 +1,7 @@
 import { notify } from '@kyvg/vue3-notification';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import { useStore } from '@/stores/main.store';
+import { mainStore } from '@/stores/main.store';
 import Api from '@shared/api/AuthApi';
 
 export const authStore = defineStore('auth', () => {
@@ -9,7 +9,7 @@ export const authStore = defineStore('auth', () => {
 
     const checkAuthorize = async () => {
         try {
-            const store = useStore();
+            const store = mainStore();
             const { data: result } = await Api.checkAuthorize(store.path);
             if (result === 'success') isAuthorized.value = true;
         } catch (error) {
@@ -23,7 +23,7 @@ export const authStore = defineStore('auth', () => {
     };
 
     const login = async (password: string) => {
-        const store = useStore();
+        const store = mainStore();
         let text = 'Пароль введён неверно';
         let type = 'error';
 
@@ -47,9 +47,9 @@ export const authStore = defineStore('auth', () => {
 
     const logout = async () => {
         try {
-            const store = useStore();
+            const store = mainStore();
             const { data: result } = await Api.logout(store.path);
-            if (result === 'success') isAuthorized.value = true;
+            if (result === 'success') isAuthorized.value = false;
         } catch (error) {
             console.error('error', error);
             notify({

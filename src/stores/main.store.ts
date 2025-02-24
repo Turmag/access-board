@@ -4,26 +4,25 @@ import { inject, ref } from 'vue';
 import type { IService } from '@/shared/types';
 import Api from '@shared/api/CommonApi';
 
-export const useStore = defineStore('main', () => {
+export const mainStore = defineStore('main', () => {
     const filterWord = ref('');
     const services = ref<IService[]>([]);
     const categories = ref<string[]>([]);
     const selectedCategory = ref('');
-    const isLoadingServices = ref(false);
+    const isLoadedPage = ref(false);
     const darkModeName = ref('');
     const savedDarkModeName = ref('');
     const path = ref('');
+    const scrollPositionName = ref('');
 
     const setVariablesFromInject = () => {
         path.value = inject('path') || '';
         darkModeName.value = inject('darkModeName') || 'isDarkModeAccessBoard';
         savedDarkModeName.value = inject('savedDarkModeName') || 'isSavedDarkModeAccessBoard';
+        scrollPositionName.value = inject('scrollPositionName') || 'testScrollTop';
     };
 
     const getServices = async () => {
-        if (isLoadingServices.value) return;
-
-        isLoadingServices.value = true;
         try {
             const { data: { services: servicesResponse, categories: categoriesResponse } } = await Api.getServices(path.value);
             services.value = servicesResponse;
@@ -36,8 +35,6 @@ export const useStore = defineStore('main', () => {
                 type: 'error',
             });
         }
-
-        isLoadingServices.value = false;
     };
 
     return {
@@ -45,9 +42,10 @@ export const useStore = defineStore('main', () => {
         services,
         categories,
         selectedCategory,
-        isLoadingServices,
+        isLoadedPage,
         darkModeName,
         savedDarkModeName,
+        scrollPositionName,
         path,
         setVariablesFromInject,
         getServices,

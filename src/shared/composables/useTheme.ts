@@ -5,9 +5,10 @@ import {
     watch,
     watchEffect,
 } from 'vue';
-import type { IMainStore } from '@/shared/types';
+import { mainStore } from '@/stores/main.store';
 
-export function useTheme(store: IMainStore) {
+export function useTheme() {
+    const store = mainStore();
     const isDarkMode = useStorage(store.darkModeName, false);
     const isSavedDarkMode = useStorage(store.savedDarkModeName, false);
     const matches = ref(true);

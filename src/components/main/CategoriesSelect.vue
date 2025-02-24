@@ -32,9 +32,9 @@
 import VueMultiselect from 'vue-multiselect';
 import { ref } from 'vue';
 import SvgIcon from '@/components/common/SvgIcon.vue';
-import { useStore } from '@/stores/main.store';
+import { mainStore } from '@/stores/main.store';
 
-const store = useStore();
+const store = mainStore();
 const isLoadingCategories = ref(false);
 
 const resetFilter = () => store.selectedCategory = '';
