@@ -12,14 +12,13 @@
 </template>
 
 <script setup lang="ts">
-import SvgIcon from '@/components/common/SvgIcon.vue';
+import { SvgIcon } from '@/components/kit';
 
-defineProps({
-    width: {
-        default: 70,
-        type: Number,
-    },
-});
+interface IProps {
+    width?: number;
+}
+
+withDefaults(defineProps<IProps>(), { width: 70 });
 </script>
 
 <style lang="scss" module>

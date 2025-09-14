@@ -19,11 +19,11 @@
 </template>
 
 <script setup lang="ts">
-import SvgIcon from '@/components/common/SvgIcon.vue';
+import { SvgIcon } from '@/components/kit';
 import Switch from '@/components/header/Switch.vue';
-import { authStore } from '@/stores/auth.store';
+import { useAuthStore } from '@/stores/useAuth.store';
 
-const authStoreVar = authStore();
+const authStoreVar = useAuthStore();
 
 const exit = () => authStoreVar.logout();
 </script>

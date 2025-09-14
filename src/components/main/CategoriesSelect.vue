@@ -29,12 +29,12 @@
 </template>
 
 <script setup lang="ts">
+import { SvgIcon } from '@/components/kit';
 import VueMultiselect from 'vue-multiselect';
 import { ref } from 'vue';
-import SvgIcon from '@/components/common/SvgIcon.vue';
-import { mainStore } from '@/stores/main.store';
+import { useMainStore } from '@/stores/useMain.store';
 
-const store = mainStore();
+const store = useMainStore();
 const isLoadingCategories = ref(false);
 
 const resetFilter = () => store.selectedCategory = '';

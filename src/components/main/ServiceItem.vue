@@ -18,8 +18,8 @@
 </template>
 
 <script setup lang="ts">
+import { SvgIcon } from '@/components/kit';
 import { computed } from 'vue';
-import SvgIcon from '@/components/common/SvgIcon.vue';
 import { copy } from '@shared/helpers';
 
 interface IProps {

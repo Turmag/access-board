@@ -28,11 +28,11 @@
 </template>
 
 <script setup lang="ts">
+import { SvgIcon } from '@/components/kit';
 import { useStorage } from '@vueuse/core';
-import SvgIcon from '@/components/common/SvgIcon.vue';
-import { mainStore } from '@/stores/main.store';
+import { useMainStore } from '@/stores/useMain.store';
 
-const store = mainStore();
+const store = useMainStore();
 const isDarkMode = useStorage(store.darkModeName, false);
 const isSavedDarkMode = useStorage(store.savedDarkModeName, false);
 

@@ -31,11 +31,11 @@
 </template>
 
 <script setup lang="ts">
+import { SvgIcon } from '@/components/kit';
 import { ref } from 'vue';
-import SvgIcon from '@/components/common/SvgIcon.vue';
-import { authStore } from '@/stores/auth.store.js';
+import { useAuthStore } from '@/stores/useAuth.store.js';
 
-const store = authStore();
+const store = useAuthStore();
 
 const isLoading = ref(false);
 const password = ref('');

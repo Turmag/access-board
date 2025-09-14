@@ -4,7 +4,7 @@ import { inject, ref } from 'vue';
 import type { IService } from '@/shared/types';
 import Api from '@shared/api/CommonApi';
 
-export const mainStore = defineStore('main', () => {
+export const useMainStore = defineStore('main', () => {
     const filterWord = ref('');
     const services = ref<IService[]>([]);
     const categories = ref<string[]>([]);

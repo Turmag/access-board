@@ -12,10 +12,10 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import ServiceBlock from '@/components/main/ServiceBlock.vue';
-import { mainStore } from '@/stores/main.store';
+import { useMainStore } from '@/stores/useMain.store';
 import type { IService } from '@shared/types';
 
-const store = mainStore();
+const store = useMainStore();
 
 const filteredServices = computed((): IService[] =>
     store.services.filter(service => {

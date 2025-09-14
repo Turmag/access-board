@@ -1,6 +1,7 @@
 <template>
     <div :class="$style.wrapper">
         <input
+            ref="inputRef"
             v-model="filterWord"
             :class="$style.filter"
             placeholder="Название"
@@ -19,16 +20,24 @@
 </template>
 
 <script setup lang="ts">
+import { SvgIcon } from '@/components/kit';
 import { useDebounceFn } from '@vueuse/core';
-import { ref, watch } from 'vue';
-import SvgIcon from '@/components/common/SvgIcon.vue';
-import { mainStore } from '@/stores/main.store';
+import {
+    ref,
+    useTemplateRef,
+    watch,
+} from 'vue';
+import { useMainStore } from '@/stores/useMain.store';
 
-const store = mainStore();
+const store = useMainStore();
 
 const filterWord = ref('');
 
-const resetFilter = () => store.filterWord = '';
+const inputRef = useTemplateRef('inputRef');
+const resetFilter = () => {
+    store.filterWord = '';
+    inputRef.value?.focus();
+};
 const onInput = useDebounceFn(() => store.filterWord = filterWord.value, 500);
 
 watch(
