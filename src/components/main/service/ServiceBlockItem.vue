@@ -50,8 +50,8 @@ const props = defineProps<IProps>();
 
 const valueSmall = computed(() => {
     let value = props.value;
-    if (value.length > 40) {
-        value = `${value.slice(0, 18)}...${value.slice(value.length - 10, value.length)}`;
+    if (value.length > 30) {
+        value = `${value.slice(0, 16)}...${value.slice(value.length - 10, value.length)}`;
     }
     return value;
 });

@@ -1,6 +1,6 @@
 {
     "name": "access-board",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "type": "module",
     "description": "Turmag's reusable access-board",
     "author": "Pavel Vinogradov",
