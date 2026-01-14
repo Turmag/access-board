@@ -7,9 +7,9 @@
 </template>
 
 <script setup lang="ts">
-import { UiLoader } from '@/components/kit';
 import { ref, watch } from 'vue';
 import Header from '@/components/header/Header.vue';
+import { UiLoader } from '@/components/kit';
 import Login from '@/components/Login.vue';
 import Main from '@/components/main/Main.vue';
 import { useScrollPosition } from '@/shared/composables/useScrollPosition';

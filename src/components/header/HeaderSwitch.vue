@@ -12,24 +12,37 @@
             </label>
         </div>
 
-        <SvgIcon
-            v-if="isSavedDarkMode"
-            v-tooltip="'Вернуться к системной теме'"
-            :class="$style.themeReset"
-            :width="10"
-            :height="10"
-            :viewBoxWidth="1920"
-            :viewBoxHeight="1920"
-            icon-name="reset"
-            style="min-width: 15px;"
-            @click="resetStorageDarkMode"
-        />
+        <UiTooltipWrapper :disabled="!isSavedDarkMode">
+            <template #trigger>
+                <SvgIcon
+                    v-if="isSavedDarkMode"
+                    :class="$style.themeReset"
+                    :width="10"
+                    :height="10"
+                    :viewBoxWidth="1920"
+                    :viewBoxHeight="1920"
+                    icon-name="reset"
+                    style="min-width: 15px;"
+                    @click="resetStorageDarkMode"
+                />
+            </template>
+
+            <UiTooltipContent>
+                <UiText>Вернуться к системной теме</UiText>
+            </UiTooltipContent>
+        </UiTooltipWrapper>
     </UiFlex>
 </template>
 
 <script setup lang="ts">
 import { useStorage } from '@vueuse/core';
-import { SvgIcon, UiFlex } from '@/components/kit';
+import {
+    SvgIcon,
+    UiFlex,
+    UiText,
+    UiTooltipContent,
+    UiTooltipWrapper,
+} from '@/components/kit';
 import { useMainStore } from '@/stores/useMain.store';
 
 const store = useMainStore();

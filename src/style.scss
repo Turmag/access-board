@@ -15,6 +15,10 @@
 
     /* Цвета границ */
     --color-border-default: #ddd;
+
+    /* Тени */
+    --shadow-s: 0 1px 2px 0 rgb(0 0 0 / 15%);
+    --shadow-m: 0 4px 40px 0 rgb(0 0 0 / 35%);
 }
 
 body {
@@ -37,6 +41,10 @@ body {
 
         /* Цвета границ */
         --color-border-default: #222;
+
+        /* Тени */
+        --shadow-s: 0 1px 2px 0 rgb(255 255 255 / 15%);
+        --shadow-m: 0 4px 40px 0 rgb(255 255 255 / 35%);
     }
 }
 
