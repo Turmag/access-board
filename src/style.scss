@@ -6,10 +6,15 @@
     -moz-osx-font-smoothing: grayscale;
     text-size-adjust: 100%;
 
-    --background-color: #fff;
-    --color: #0e1b3e;
-    --help-background-color: #ecf0f1;
-    --help-background-border: #ddd;
+    /* Цвета фонов */
+    --background-color-default: #fff;
+    --background-color-help: #ecf0f1;
+
+    /* Цвета текста */
+    --color-text-default: #0e1b3e;
+
+    /* Цвета границ */
+    --color-border-default: #ddd;
 }
 
 body {
@@ -17,15 +22,21 @@ body {
     min-width: 500px;
     min-height: 100vh;
     margin: 0;
-    background-color: var(--background-color);
+    background-color: var(--background-color-default);
     font-size: 16px;
 
     &.dark {
         /** Тёмная тема **/
-        --background-color: #171e31;
-        --color: #a3deff;
-        --help-background-color: #130f0e;
-        --help-background-border: #222;
+
+        /* Цвета фонов */
+        --background-color-default: #171e31;
+        --background-color-help: #130f0e;
+
+        /* Цвета текста */
+        --color-text-default: #a3deff;
+
+        /* Цвета границ */
+        --color-border-default: #222;
     }
 }
 

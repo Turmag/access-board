@@ -54,7 +54,7 @@ const resetFilter = () => store.selectedCategory = '';
     }
 
     .cancel {
-        color: var(--color);
+        color: var(--color-text-default);
         cursor: pointer;
         user-select: none;
     }
@@ -74,7 +74,7 @@ const resetFilter = () => store.selectedCategory = '';
     .multiselect__tags {
         padding: 8px 18px 0 10px;
         border-color: #aaa !important;
-        background: var(--background-color);
+        background: var(--background-color-default);
     }
 
     .multiselect__placeholder {
@@ -87,15 +87,15 @@ const resetFilter = () => store.selectedCategory = '';
     }
 
     .multiselect__option:not(.multiselect__option--selected, .multiselect__option--highlight) {
-        background: var(--background-color);
-        color: var(--color);
+        background: var(--background-color-default);
+        color: var(--color-text-default);
     }
 
     .multiselect__input,
     .multiselect__single,
     .multiselect__tags {
-        background: var(--background-color) !important;
-        color: var(--color) !important;
+        background: var(--background-color-default) !important;
+        color: var(--color-text-default) !important;
         text-transform: capitalize;
     }
 
@@ -107,12 +107,12 @@ const resetFilter = () => store.selectedCategory = '';
 
         &::-webkit-scrollbar-thumb {
             border-radius: 15px;
-            background: var(--color);
+            background: var(--color-text-default);
         }
 
         &::-webkit-scrollbar-track {
             border-radius: 15px;
-            background: var(--background-color);
+            background: var(--background-color-default);
         }
     }
 </style>

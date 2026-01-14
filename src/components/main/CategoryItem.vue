@@ -22,7 +22,7 @@ defineProps<IProps>();
         display: flex;
         align-items: center;
         gap: 8px;
-        color: var(--color);
+        color: var(--color-text-default);
     }
 
     .name {

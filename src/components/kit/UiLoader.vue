@@ -28,7 +28,7 @@ withDefaults(defineProps<IProps>(), { width: 70 });
         align-items: center;
         width: 100%;
         height: calc(100% - 115px);
-        color: var(--color);
+        color: var(--color-text-default);
     }
 
     .img {

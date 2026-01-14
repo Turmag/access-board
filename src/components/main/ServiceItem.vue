@@ -44,7 +44,7 @@ const valueSmall = computed(() => {
         display: flex;
         align-items: center;
         gap: 8px;
-        color: var(--color);
+        color: var(--color-text-default);
     }
 
     .name {
@@ -62,11 +62,11 @@ const valueSmall = computed(() => {
         user-select: none;
 
         &:hover {
-            background-color: var(--help-background-color);
+            background-color: var(--background-color-help);
         }
 
         &:active {
-            background-color: var(--help-background-border);
+            background-color: var(--color-border-default);
         }
     }
 </style>

@@ -32,7 +32,7 @@ defineProps<IProps>();
 
     .header {
         margin-bottom: 20px;
-        color: var(--color);
+        color: var(--color-text-default);
         font-size: 20px;
         font-weight: 600;
     }

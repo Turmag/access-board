@@ -58,10 +58,10 @@ watch(
         height: 40px;
         padding: 8px;
         border-radius: 4px;
-        border: 1px solid var(--background-color);
+        border: 1px solid var(--background-color-default);
         border: 1px solid #aaa;
-        background: var(--background-color);
-        color: var(--color);
+        background: var(--background-color-default);
+        color: var(--color-text-default);
         font-family: Inter, Verdana, Geneva, Tahoma, sans-serif;
         font-size: 16px;
 
@@ -71,7 +71,7 @@ watch(
     }
 
     .cancel {
-        color: var(--color);
+        color: var(--color-text-default);
         cursor: pointer;
         user-select: none;
     }

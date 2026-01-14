@@ -68,7 +68,7 @@ const resetStorageDarkMode = () => {
         width: 100%;
         height: 22px;
         border-radius: 50px;
-        background-color: var(--color);
+        background-color: var(--color-text-default);
         cursor: pointer;
         user-select: none;
     }
@@ -94,13 +94,13 @@ const resetStorageDarkMode = () => {
         width: 16px;
         height: 16px;
         border-radius: 50%;
-        background-color: var(--color);
+        background-color: var(--color-text-default);
         transition: 0.3s;
-        box-shadow: inset 4px -1px 0 0 var(--background-color);
+        box-shadow: inset 4px -1px 0 0 var(--background-color-default);
     }
 
     input:checked ~ .slider::before {
-        background-color: var(--background-color);
+        background-color: var(--background-color-default);
         transform: translateX(22px);
         box-shadow: none;
     }
@@ -109,7 +109,7 @@ const resetStorageDarkMode = () => {
         width: 10px;
         height: 10px;
         border-radius: 50%;
-        color: var(--color);
+        color: var(--color-text-default);
         outline: none;
         cursor: pointer;
         user-select: none;

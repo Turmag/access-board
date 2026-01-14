@@ -38,12 +38,12 @@ const exit = () => authStoreVar.logout();
         padding: 30px 20px;
         border-bottom: 1px solid;
         box-shadow: 0 5px 8px 0 rgb(34 60 80 / 20%);
-        background-color: var(--background-color);
+        background-color: var(--background-color-default);
     }
 
     .text {
         margin-top: -8px;
-        color: var(--color);
+        color: var(--color-text-default);
         text-decoration: none;
         font-size: 32px;
         line-height: 36px;
@@ -59,7 +59,7 @@ const exit = () => authStoreVar.logout();
         width: 10px;
         height: 10px;
         border-radius: 50%;
-        color: var(--color);
+        color: var(--color-text-default);
         outline: none;
         cursor: pointer;
         user-select: none;
@@ -67,7 +67,7 @@ const exit = () => authStoreVar.logout();
 
     .exit {
         margin-left: auto;
-        color: var(--color);
+        color: var(--color-text-default);
         cursor: pointer;
         user-select: none;
     }

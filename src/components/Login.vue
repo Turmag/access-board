@@ -70,9 +70,9 @@ const authorize = async () => {
         min-height: 100px;
         padding-block: 40px;
         border-radius: 5px;
-        border: 1px solid var(--help-background-border);
-        background-color: var(--help-background-color);
-        color: var(--color);
+        border: 1px solid var(--color-border-default);
+        background-color: var(--background-color-help);
+        color: var(--color-text-default);
         flex-direction: column;
     }
 
@@ -98,16 +98,16 @@ const authorize = async () => {
         position: relative;
         width: 300px;
         border-radius: 8px;
-        background: var(--background-color);
+        background: var(--background-color-default);
     }
 
     .input {
         width: 250px;
         height: 40px;
         border-radius: 8px 0 0 8px;
-        border: 1px solid var(--background-color);
-        background: var(--background-color);
-        color: var(--color);
+        border: 1px solid var(--background-color-default);
+        background: var(--background-color-default);
+        color: var(--color-text-default);
         text-align: center;
         font-family: Inter, Verdana, Geneva, Tahoma, sans-serif;
         font-size: 16px;
@@ -123,7 +123,7 @@ const authorize = async () => {
         position: absolute;
         top: calc(50% - 12px);
         right: 5px;
-        color: var(--color);
+        color: var(--color-text-default);
         cursor: pointer;
         user-select: none;
     }
