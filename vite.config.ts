@@ -5,6 +5,8 @@ import vue from '@vitejs/plugin-vue';
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }: { mode: string }) => ({
     css: { modules: { generateScopedName: mode === 'development' ? '' : '[hash:base64:8]' } },
+    // INFO: Для теста
+    // base: '/access-board',
     plugins: [vue()],
     resolve: {
         alias: {
