@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style.switchWrapper">
+    <UiFlex align-items="center" gap="g8">
         <div :class="$style.switch">
             <label :class="$style.label">
                 <input
@@ -16,20 +16,20 @@
             v-if="isSavedDarkMode"
             v-tooltip="'Вернуться к системной теме'"
             :class="$style.themeReset"
-            width="10"
-            height="10"
-            viewBoxWidth="1920"
-            viewBoxHeight="1920"
+            :width="10"
+            :height="10"
+            :viewBoxWidth="1920"
+            :viewBoxHeight="1920"
             icon-name="reset"
             style="min-width: 15px;"
             @click="resetStorageDarkMode"
         />
-    </div>
+    </UiFlex>
 </template>
 
 <script setup lang="ts">
-import { SvgIcon } from '@/components/kit';
 import { useStorage } from '@vueuse/core';
+import { SvgIcon, UiFlex } from '@/components/kit';
 import { useMainStore } from '@/stores/useMain.store';
 
 const store = useMainStore();
@@ -51,12 +51,6 @@ const resetStorageDarkMode = () => {
 </script>
 
 <style lang="scss" module>
-    .switchWrapper {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
     .switch {
         position: relative;
         width: 44px;

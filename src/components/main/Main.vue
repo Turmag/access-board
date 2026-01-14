@@ -1,20 +1,17 @@
 <template>
-    <main :class="$style.main">
+    <UiFlex
+        direction="col"
+        gap="g16"
+        padding="p20"
+        tag="main"
+    >
         <Filters />
         <Services />
-    </main>
+    </UiFlex>
 </template>
 
 <script setup lang="ts">
-import Filters from '@/components/main/Filters.vue';
-import Services from '@/components/main/Services.vue';
+import { UiFlex } from '@/components/kit';
+import Filters from '@/components/main/filters/Filters.vue';
+import Services from '@/components/main/service/Services.vue';
 </script>
-
-<style lang="scss" module>
-    .main {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        padding: 20px;
-    }
-</style>

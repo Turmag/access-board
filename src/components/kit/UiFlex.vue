@@ -1,5 +1,6 @@
 <template>
-    <div
+    <component
+        :is="tag"
         :class="[
             $style.container,
             $style[height],
@@ -28,7 +29,7 @@
         ]"
     >
         <slot />
-    </div>
+    </component>
 </template>
 
 <script setup lang="ts">
@@ -52,6 +53,7 @@ withDefaults(defineProps<{
     position?: '' | 'relative' | 'absolute' | 'sticky';
     radius?: '' | 'r0' | 'r2' | 'r4' | 'r6' | 'r8' | 'r12' | 'r14' | 'r16' | 'r18' | 'r20' | 'r22' | 'r24' | 'r26' | 'r28' | 'r30' | 'r32';
     rowGap?: '' | 'g2' | 'g4' | 'g6' | 'g8' | 'g10' | 'g12' | 'g16' | 'g20' | 'g24' | 'g28' | 'g32' | 'g36' | 'g40' | 'g42' | 'g48' | 'g56' | 'g60' | 'g64' | 'g80' | 'g120';
+    tag?: string;
     width?: '' | 'wfull';
     wrap?: '' | 'nowrap' | 'wrap' | 'wrap-reverse';
 }>(), {
@@ -74,6 +76,7 @@ withDefaults(defineProps<{
     position: '',
     radius: 'r0',
     rowGap: '',
+    tag: 'div',
     width: '',
     wrap: '',
 });

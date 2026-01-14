@@ -1,25 +1,35 @@
 <template>
-    <div :class="$style.item">
-        <div :class="$style.name">
+    <UiFlex align-items="center" gap="g8">
+        <UiText :class="$style.name">
             {{ name }}
-        </div>
-        <div>
+        </UiText>
+        <UiText>
             <a v-if="isLink" :href="value" target="_blank">
                 {{ valueSmall }}
             </a>
             <template v-else>
                 {{ valueSmall }}
             </template>
-        </div>
-        <div :class="$style.copy" @click="copy(value)">
+        </UiText>
+        <UiFlex
+            justify-content="center"
+            align-items="center"
+            radius="r8"
+            :class="$style.copy"
+            @click="copy(value)"
+        >
             <SvgIcon width="24" height="24" icon-name="copy" />
-        </div>
-    </div>
+        </UiFlex>
+    </UiFlex>
 </template>
 
 <script setup lang="ts">
-import { SvgIcon } from '@/components/kit';
 import { computed } from 'vue';
+import {
+    SvgIcon,
+    UiFlex,
+    UiText,
+} from '@/components/kit';
 import { copy } from '@shared/helpers';
 
 interface IProps {
@@ -40,24 +50,14 @@ const valueSmall = computed(() => {
 </script>
 
 <style lang="scss" module>
-    .item {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        color: var(--color-text-default);
-    }
-
     .name {
         min-width: 120px;
     }
 
     .copy {
-        display: flex;
-        justify-content: center;
-        align-items: center;
         width: 40px;
         height: 40px;
-        border-radius: 8px;
+        color: var(--color-text-default);
         cursor: pointer;
         user-select: none;
 

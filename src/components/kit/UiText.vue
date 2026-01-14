@@ -19,7 +19,7 @@ import type { Ref } from 'vue';
 withDefaults(defineProps<{
     color?: 'default';
     display?: 'block' | 'inline' | 'flex' | '';
-    size?: 'fs12' | 'fs14' | 'fs16' | 'fs18' | 'fs20' | 'fs24' | 'fs36';
+    size?: 'fs12' | 'fs14' | 'fs16' | 'fs18' | 'fs20' | 'fs24' | 'fs32' | 'fs36';
     text?: string | number | Ref<string, string>;
     weight?: 'fw400' | 'fw500' | 'fw600' | 'fw700';
     wrap?: 'nowrap' | 'balance' | '';
@@ -51,7 +51,7 @@ withDefaults(defineProps<{
         }
     }
 
-    $sizes: 12, 14, 16, 18, 20, 24, 36;
+    $sizes: 12, 14, 16, 18, 20, 24, 32, 36;
 
     @each $size in $sizes {
         .fs#{$size} {

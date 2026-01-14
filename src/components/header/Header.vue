@@ -1,11 +1,19 @@
 <template>
-    <header :class="$style.header">
-        <div :class="$style.text">
+    <UiFlex
+        align-items="center"
+        gap="g16"
+        padding-block="p32"
+        padding-inline="p20"
+        bg="default"
+        tag="header"
+        :class="$style.header"
+    >
+        <UiText size="fs32" :class="$style.text">
             Доступы к сервисам
-        </div>
-        <div :class="$style.switchWrapper">
-            <Switch />
-        </div>
+        </UiText>
+        <UiFlex align-items="center" gap="g4">
+            <HeaderSwitch />
+        </UiFlex>
         <SvgIcon
             v-if="authStoreVar.isAuthorized"
             :class="$style.exit"
@@ -15,12 +23,16 @@
             icon-name="door"
             @click="exit"
         />
-    </header>
+    </UiFlex>
 </template>
 
 <script setup lang="ts">
-import { SvgIcon } from '@/components/kit';
-import Switch from '@/components/header/Switch.vue';
+import HeaderSwitch from '@/components/header/HeaderSwitch.vue';
+import {
+    SvgIcon,
+    UiFlex,
+    UiText,
+} from '@/components/kit';
 import { useAuthStore } from '@/stores/useAuth.store';
 
 const authStoreVar = useAuthStore();
@@ -30,39 +42,15 @@ const exit = () => authStoreVar.logout();
 
 <style lang="scss" module>
     .header {
-        display: flex;
-        align-items: center;
-        gap: 16px;
         max-width: 100%;
         height: 120px;
-        padding: 30px 20px;
         border-bottom: 1px solid;
         box-shadow: 0 5px 8px 0 rgb(34 60 80 / 20%);
-        background-color: var(--background-color-default);
     }
 
     .text {
         margin-top: -8px;
-        color: var(--color-text-default);
-        text-decoration: none;
-        font-size: 32px;
         line-height: 36px;
-    }
-
-    .switchWrapper {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .themeReset {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        color: var(--color-text-default);
-        outline: none;
-        cursor: pointer;
-        user-select: none;
     }
 
     .exit {

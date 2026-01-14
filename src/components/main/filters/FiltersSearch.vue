@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style.wrapper">
+    <UiFlex align-items="center" gap="g16">
         <input
             ref="inputRef"
             v-model="filterWord"
@@ -16,17 +16,17 @@
             icon-name="cancel"
             @click="resetFilter"
         />
-    </div>
+    </UiFlex>
 </template>
 
 <script setup lang="ts">
-import { SvgIcon } from '@/components/kit';
 import { useDebounceFn } from '@vueuse/core';
 import {
     ref,
     useTemplateRef,
     watch,
 } from 'vue';
+import { SvgIcon, UiFlex } from '@/components/kit';
 import { useMainStore } from '@/stores/useMain.store';
 
 const store = useMainStore();
@@ -36,6 +36,7 @@ const filterWord = ref('');
 const inputRef = useTemplateRef('inputRef');
 const resetFilter = () => {
     store.filterWord = '';
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     inputRef.value?.focus();
 };
 const onInput = useDebounceFn(() => store.filterWord = filterWord.value, 500);
@@ -47,12 +48,6 @@ watch(
 </script>
 
 <style lang="scss" module>
-    .wrapper {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-    }
-
     .filter {
         width: 380px;
         height: 40px;

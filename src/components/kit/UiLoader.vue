@@ -1,5 +1,10 @@
 <template>
-    <div :class="$style.loader">
+    <UiFlex
+        justify-content="center"
+        align-items="center"
+        width="wfull"
+        :class="$style.loader"
+    >
         <SvgIcon
             :class="$style.img"
             :width="width"
@@ -8,11 +13,11 @@
             viewBoxHeight="1024"
             icon-name="loader"
         />
-    </div>
+    </UiFlex>
 </template>
 
 <script setup lang="ts">
-import { SvgIcon } from '@/components/kit';
+import { SvgIcon, UiFlex } from '@/components/kit';
 
 interface IProps {
     width?: number;
@@ -23,10 +28,6 @@ withDefaults(defineProps<IProps>(), { width: 70 });
 
 <style lang="scss" module>
     .loader {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
         height: calc(100% - 115px);
         color: var(--color-text-default);
     }

@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import ServiceBlock from '@/components/main/ServiceBlock.vue';
+import ServiceBlock from '@/components/main/service/ServiceBlock.vue';
 import { useMainStore } from '@/stores/useMain.store';
 import type { IService } from '@shared/types';
 

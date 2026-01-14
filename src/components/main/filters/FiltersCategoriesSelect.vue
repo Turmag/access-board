@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style.wrapper">
+    <UiFlex align-items="center" gap="g16" :class="$style.wrapper">
         <VueMultiselect
             v-model="store.selectedCategory"
             :class="$style.select"
@@ -25,13 +25,13 @@
             icon-name="cancel"
             @click="resetFilter"
         />
-    </div>
+    </UiFlex>
 </template>
 
 <script setup lang="ts">
-import { SvgIcon } from '@/components/kit';
 import VueMultiselect from 'vue-multiselect';
 import { ref } from 'vue';
+import { SvgIcon, UiFlex } from '@/components/kit';
 import { useMainStore } from '@/stores/useMain.store';
 
 const store = useMainStore();
@@ -42,10 +42,7 @@ const resetFilter = () => store.selectedCategory = '';
 
 <style lang="scss" module>
     .wrapper {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        width: 412px;
+        width: 420px;
     }
 
     .select {

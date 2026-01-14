@@ -1,13 +1,23 @@
 <template>
-    <div :class="$style.wrapper">
-        <div :class="$style.login">
-            <div :class="$style.title">
+    <UiFlex justify-content="center" align-items="center" padding="p20">
+        <UiFlex
+            direction="col"
+            justify-content="center"
+            gap="g8"
+            width="wfull"
+            padding-block="p40"
+            radius="r4"
+            bg="help"
+            border-color="default"
+            :class="$style.login"
+        >
+            <UiText size="fs24" :class="$style.title">
                 Приветули!
-            </div>
-            <div :class="$style.description">
+            </UiText>
+            <UiText :class="$style.description">
                 Просто залогинься
-            </div>
-            <div :class="$style.inputWrapper">
+            </UiText>
+            <UiFlex justify-content="center">
                 <div :class="$style.inputBox">
                     <input
                         v-model="password"
@@ -25,14 +35,18 @@
                         @click="toggleEye"
                     />
                 </div>
-            </div>
-        </div>
-    </div>
+            </UiFlex>
+        </UiFlex>
+    </UiFlex>
 </template>
 
 <script setup lang="ts">
-import { SvgIcon } from '@/components/kit';
 import { ref } from 'vue';
+import {
+    SvgIcon,
+    UiFlex,
+    UiText,
+} from '@/components/kit';
 import { useAuthStore } from '@/stores/useAuth.store.js';
 
 const store = useAuthStore();
@@ -55,43 +69,20 @@ const authorize = async () => {
 </script>
 
 <style lang="scss" module>
-    .wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-    }
-
     .login {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        width: 100%;
         min-height: 100px;
-        padding-block: 40px;
-        border-radius: 5px;
-        border: 1px solid var(--color-border-default);
-        background-color: var(--background-color-help);
         color: var(--color-text-default);
-        flex-direction: column;
     }
 
     .title {
         text-align: center;
-        font-size: 24px;
         line-height: 28px;
     }
 
     .description {
         margin-block: 20px;
         text-align: center;
-        font-size: 16px;
         line-height: 20px;
-    }
-
-    .inputWrapper {
-        display: flex;
-        justify-content: center;
     }
 
     .inputBox {
