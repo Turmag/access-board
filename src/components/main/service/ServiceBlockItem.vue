@@ -3,14 +3,20 @@
         <UiText :class="$style.name">
             {{ name }}
         </UiText>
-        <UiText>
-            <a v-if="isLink" :href="value" target="_blank">
-                {{ valueSmall }}
-            </a>
-            <template v-else>
-                {{ valueSmall }}
+        <UiTooltipWrapper :disabled="value === valueSmall">
+            <template #trigger>
+                <UiText>
+                    <a v-if="isLink" :href="value" target="_blank">
+                        {{ valueSmall }}
+                    </a>
+                    <template v-else>
+                        {{ valueSmall }}
+                    </template>
+                </UiText>
             </template>
-        </UiText>
+
+            <UiTooltipContent>{{ value }}</UiTooltipContent>
+        </UiTooltipWrapper>
         <UiFlex
             justify-content="center"
             align-items="center"
@@ -29,6 +35,8 @@ import {
     SvgIcon,
     UiFlex,
     UiText,
+    UiTooltipContent,
+    UiTooltipWrapper,
 } from '@/components/kit';
 import { copy } from '@shared/helpers';
 
@@ -43,7 +51,7 @@ const props = defineProps<IProps>();
 const valueSmall = computed(() => {
     let value = props.value;
     if (value.length > 40) {
-        value = `${value.slice(0, 20)}...${value.slice(value.length - 10, value.length)}`;
+        value = `${value.slice(0, 18)}...${value.slice(value.length - 10, value.length)}`;
     }
     return value;
 });
