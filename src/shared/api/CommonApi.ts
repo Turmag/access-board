@@ -1,4 +1,9 @@
-import axios from 'axios';
+import { useAxiosInstance } from '@shared/composables/useAxiosInstance';
 import type { IServiceResponse } from '@shared/types';
 
-export default { getServices: (path: string) => axios.get<IServiceResponse>(`${path}/api/getServices.php`) };
+export default {
+    getServices: async (path: string) => {
+        const axiosInstance = await useAxiosInstance();
+        return await axiosInstance.value.get<IServiceResponse>(`${path}/api/getServices`);
+    },
+};

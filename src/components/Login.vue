@@ -25,7 +25,7 @@
                         maxlength="20"
                         :type="!eyeState ? 'text' : 'password'"
                         :class="$style.input"
-                        @keyup.enter="authorize"
+                        @keyup.enter="authorizeLocal"
                     >
                     <SvgIcon
                         :class="$style.icon"
@@ -47,23 +47,22 @@ import {
     UiFlex,
     UiText,
 } from '@/components/kit';
-import { useAuthStore } from '@/stores/useAuth.store.js';
+import { useAuthStore } from '@/stores/useAuth.store';
 
-const store = useAuthStore();
-
+const authStore = useAuthStore();
 const isLoading = ref(false);
 const password = ref('');
 
 const eyeState = ref(true);
 const toggleEye = () => eyeState.value = !eyeState.value;
 
-const authorize = async () => {
+const authorizeLocal = async () => {
     if (isLoading.value || !password.value) {
         return;
     }
 
     isLoading.value = true;
-    await store.login(password.value);
+    await authStore.authorize(password.value);
     isLoading.value = false;
 };
 </script>

@@ -8,9 +8,9 @@ import {
 import { useMainStore } from '@/stores/useMain.store';
 
 export function useTheme() {
-    const store = useMainStore();
-    const isDarkMode = useStorage(store.darkModeName, false);
-    const isSavedDarkMode = useStorage(store.savedDarkModeName, false);
+    const mainStore = useMainStore();
+    const isDarkMode = useStorage(mainStore.darkModeName, false);
+    const isSavedDarkMode = useStorage(mainStore.savedDarkModeName, false);
     const matches = ref(true);
 
     const setDarkMode = () => {

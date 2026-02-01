@@ -1,81 +1,16 @@
 <?php
+require __DIR__ . '/JwtAuth.php';
+
 session_start();
 
-function authorizeUser() {
-	$_SESSION["isDocsAuthorized"] = true;
-}
+$tokensConfig = [
+    'jwt_secret' => 'my-awesome-secret-key-for-access-board-project',
+    'jwt_refresh_secret' => 'my-awesome-secret-key-for-access-board-project-for-refresh',
+    'access_token_ttl' => 3600,
+    'refresh_token_ttl' => 1209600,
+];
 
-function setCookies(){
-	$cookiesFile = 'cookies.json';
-	if(!file_exists($cookiesFile)){
-		file_put_contents($cookiesFile, '[]');
-	}
-
-	$handle = fopen($cookiesFile, "r");
-	$cookies = json_decode(fread($handle, filesize($cookiesFile)));
-	fclose($handle);
-
-	$cookieHash = md5('docs' . rand(5, 150));
-
-	$cookies[] = (object)[
-		'hash' => $cookieHash
-	];
-
-	file_put_contents($cookiesFile, json_encode($cookies));
-	setcookie('docsAuthorizeHash', $cookieHash, strtotime('+7 days'));
-}
-
-function unsetCookie(){
-	$cookiesFile = 'cookies.json';
-	if(!file_exists($cookiesFile)){
-		file_put_contents($cookiesFile, '[]');
-	}
-
-	$handle = fopen($cookiesFile, "r");
-	$cookies = json_decode(fread($handle, filesize($cookiesFile)));
-	fclose($handle);
-
-	$cookieHash = $_COOKIE['docsAuthorizeHash'];
-	$newItems = [];
-	foreach($cookies as $cookie){
-		if($cookie->hash !== $cookieHash){
-			$newItems[] = $cookie;
-		}
-	}
-
-	file_put_contents($cookiesFile, json_encode($newItems));
-}
-
-function checkCookie(){
-	$cookiesFile = 'cookies.json';
-	if(!file_exists($cookiesFile)){
-		file_put_contents($cookiesFile, '[]');
-	}
-	$handle = fopen($cookiesFile, "r");
-	$cookies = json_decode(fread($handle, filesize($cookiesFile)));
-	fclose($handle);
-
-	foreach($cookies as $cookie){
-		if($cookie->hash === $_COOKIE['docsAuthorizeHash']){
-			authorizeUser();
-		}
-	}
-}
-
-function unAuthorizeUser() {
-    $_SESSION["isDocsAuthorized"] = false;
-}
-
-function isAuthorizedUser(){
-	return $_SESSION["isDocsAuthorized"];
-}
-
-function checkAuthorizedUser(){
-	if(!isAuthorizedUser()){
-		header('HTTP/1.1 500 Internal Server Error');
-		die("Эта операция недопустима неавторизованным пользователям");
-	}
-}
+$savedPassword = '098f6bcd4621d373cade4e832627b4f6';
 
 function getCategories($items){
 	$categories = [];
@@ -88,4 +23,53 @@ function getCategories($items){
 	return $categories;
 }
 
-$params = json_decode(file_get_contents("php://input"), true);
+function getBearerToken() {
+    // INFO: Пытаемся получить через apache_request_headers
+    if (function_exists('apache_request_headers')) {
+        $headers = apache_request_headers();
+        if (isset($headers['Authorization'])) {
+            $authHeader = $headers['Authorization'];
+        }
+    } 
+    // INFO:Для FPM
+    elseif (isset($_SERVER['HTTP_AUTHORIZATION'])) {
+        $authHeader = $_SERVER['HTTP_AUTHORIZATION'];
+    }
+    // INFO: Последний шанс — getallheaders
+    else {
+        $headers = getallheaders() ?? [];
+        if (isset($headers['Authorization'])) {
+            $authHeader = $headers['Authorization'];
+        }
+    }
+
+    // INFO: Извлекаем токен
+    if (!empty($authHeader) && preg_match('/^Bearer\s+(.*)$/i', $authHeader, $matches)) {
+        return $matches[1];
+    }
+
+    return null;
+}
+
+function checkBearerToken() {
+    $token = getBearerToken();
+
+    if (!$token) {
+        http_response_code(401);
+        echo json_encode(['success' => false, 'title' => 'Access token не указан']);
+        exit;
+    }
+
+    global $tokensConfig;
+
+    $jwtAuth = new JwtAuth($tokensConfig);
+
+    $validToken = $jwtAuth->validateAccessToken($token);
+    if (!$validToken) {
+        http_response_code(401);
+        echo json_encode(['success' => false, 'title' => 'Неправильный или истёкший токен']);
+        exit;
+    }
+
+    return $validToken;
+}

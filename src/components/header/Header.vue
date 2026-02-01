@@ -15,7 +15,7 @@
             <HeaderSwitch />
         </UiFlex>
         <SvgIcon
-            v-if="authStoreVar.isAuthorized"
+            v-if="authStore.isAuthorized"
             :class="$style.exit"
             width="69"
             height="64"
@@ -35,9 +35,9 @@ import {
 } from '@/components/kit';
 import { useAuthStore } from '@/stores/useAuth.store';
 
-const authStoreVar = useAuthStore();
+const authStore = useAuthStore();
 
-const exit = () => authStoreVar.logout();
+const exit = () => authStore.logout();
 </script>
 
 <style lang="scss" module>

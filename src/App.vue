@@ -1,7 +1,7 @@
 <template>
     <Header />
     <UiLoader v-if="isAuthorizeChecking" />
-    <Login v-else-if="!authStoreVar.isAuthorized" />
+    <Login v-else-if="!authStore.isAuthorized" />
     <Main v-else />
     <notifications :duration="5000" />
 </template>
@@ -17,28 +17,28 @@ import { useTheme } from '@shared/composables/useTheme';
 import { useAuthStore } from '@/stores/useAuth.store';
 import { useMainStore } from '@/stores/useMain.store';
 
-const store = useMainStore();
-const authStoreVar = useAuthStore();
+const mainStore = useMainStore();
+const authStore = useAuthStore();
 
 const isAuthorizeChecking = ref(true);
 
 const loadServices = async () => {
-    if (authStoreVar.isAuthorized && !store.services.length) {
-        await store.getServices();
-        store.isLoadedPage = true;
+    if (authStore.isAuthorized && !mainStore.services.length) {
+        await mainStore.getServices();
+        mainStore.isLoadedPage = true;
     }
 };
 
 watch(
-    () => authStoreVar.isAuthorized,
+    () => authStore.isAuthorized,
     () => loadServices(),
 );
 
 const init = async () => {
-    store.setVariablesFromInject();
+    mainStore.setVariablesFromInject();
     useTheme();
     useScrollPosition();
-    await authStoreVar.checkAuthorize();
+    await authStore.checkAccessToken();
     isAuthorizeChecking.value = false;
 };
 

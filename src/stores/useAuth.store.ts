@@ -1,41 +1,80 @@
 import { notify } from '@kyvg/vue3-notification';
+import { jwtDecode } from 'jwt-decode';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
+import { useAuth } from '@shared/composables/useAuth';
 import { useMainStore } from '@/stores/useMain.store';
+import type { IDecodedToken } from '@shared/types';
+import type { AxiosError } from 'axios';
 import Api from '@shared/api/AuthApi';
 
 export const useAuthStore = defineStore('auth', () => {
     const isAuthorized = ref(false);
 
-    const checkAuthorize = async () => {
+    const checkAccessToken = async (isForceGet = false) => {
+        const { accessToken } = useAuth();
+        if (isAuthorized.value && !isForceGet || !accessToken.value) return;
+        if (accessToken.value === 'false') accessToken.value = '';
+
         try {
-            const store = useMainStore();
-            const { data: result } = await Api.checkAuthorize(store.path);
-            if (result === 'success') isAuthorized.value = true;
+            const decodedToken = jwtDecode<IDecodedToken>(accessToken.value);
+
+            const expDate = new Date(decodedToken.exp * 1000);
+            const today = new Date();
+
+            if (expDate < today) {
+                await getAccessTokenByRefreshTokenLocal();
+            }
+
+            isAuthorized.value = true;
         } catch (error) {
-            console.error('error', error);
+            // @ts-expect-error title
+            const errorMessage = (error as AxiosError).response?.data?.title as string;
+            console.error(errorMessage, error);
             notify({
-                text: 'Проверка авторизации не увенчалась успехом',
+                text: errorMessage,
                 title: 'Проверка авторизации',
                 type: 'error',
             });
         }
     };
 
-    const login = async (password: string) => {
-        const store = useMainStore();
-        let text = 'Пароль введён неверно';
-        let type = 'error';
+    const getAccessTokenByRefreshTokenLocal = async (isForceGet = false) => {
+        const mainStore = useMainStore();
+        const { accessToken, refreshToken } = useAuth();
 
         try {
-            const { data: result } = await Api.authorize(store.path, password);
-            if (result === 'success') {
-                text = 'Всё прекрасно!';
-                type = 'success';
-                isAuthorized.value = true;
-            }
+            const { data } = await Api.getAccessTokenByRefreshToken(mainStore.path, refreshToken.value);
+            accessToken.value = data.access_token;
+            refreshToken.value = data.refresh_token;
+            await checkAccessToken(isForceGet);
         } catch (error) {
-            console.error('error', error);
+            console.error('Ошибка при обновлении токена', error);
+            accessToken.value = '';
+            refreshToken.value = '';
+            return;
+        }
+    };
+
+    const authorize = async (password: string) => {
+        const mainStore = useMainStore();
+        const { accessToken, refreshToken } = useAuth();
+
+        let text = 'Всё прекрасно!';
+        let type = 'success';
+
+        try {
+            console.log('path.value', mainStore.path);
+            const { data } = await Api.authorize(mainStore.path, password);
+            accessToken.value = data.access_token;
+            refreshToken.value = data.refresh_token;
+            isAuthorized.value = true;
+        } catch (error) {
+            // @ts-expect-error title
+            const errorMessage = (error as AxiosError).response?.data?.title as string;
+            console.error('error', errorMessage);
+            text = errorMessage;
+            type = 'error';
         }
 
         notify({
@@ -45,25 +84,17 @@ export const useAuthStore = defineStore('auth', () => {
         });
     };
 
-    const logout = async () => {
-        try {
-            const store = useMainStore();
-            const { data: result } = await Api.logout(store.path);
-            if (result === 'success') isAuthorized.value = false;
-        } catch (error) {
-            console.error('error', error);
-            notify({
-                text: 'Выход из доступов сервисов не увенчался успехом',
-                title: 'Выход из Доступов',
-                type: 'error',
-            });
-        }
+    const logout = () => {
+        const { accessToken, refreshToken } = useAuth();
+        isAuthorized.value = false;
+        accessToken.value = '';
+        refreshToken.value = '';
     };
 
     return {
+        authorize,
+        checkAccessToken,
         isAuthorized,
-        checkAuthorize,
-        login,
         logout,
     };
 });

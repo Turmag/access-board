@@ -45,9 +45,9 @@ import {
 } from '@/components/kit';
 import { useMainStore } from '@/stores/useMain.store';
 
-const store = useMainStore();
-const isDarkMode = useStorage(store.darkModeName, false);
-const isSavedDarkMode = useStorage(store.savedDarkModeName, false);
+const mainStore = useMainStore();
+const isDarkMode = useStorage(mainStore.darkModeName, false);
+const isSavedDarkMode = useStorage(mainStore.savedDarkModeName, false);
 
 const toggle = () => {
     const bodyClass = document.body.classList;
