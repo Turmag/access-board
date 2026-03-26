@@ -80,7 +80,7 @@
         "category": "Игры",
         "items": [
             {
-                "name": "Логин",
+                "name": "Логин с длинным названием",
                 "value": "test@google.com"
             },
             {
