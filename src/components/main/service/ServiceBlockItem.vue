@@ -1,8 +1,14 @@
 <template>
     <UiFlex align-items="center" gap="g8">
-        <UiText :class="$style.name">
-            {{ name }}
-        </UiText>
+        <UiTooltipWrapper :disabled="name === nameSmall">
+            <template #trigger>
+                <UiText :class="$style.name">
+                    {{ nameSmall }}
+                </UiText>
+            </template>
+
+            <UiTooltipContent>{{ name }}</UiTooltipContent>
+        </UiTooltipWrapper>
         <UiTooltipWrapper :disabled="value === valueSmall">
             <template #trigger>
                 <UiText>
@@ -47,6 +53,14 @@ interface IProps {
 }
 
 const props = defineProps<IProps>();
+
+const nameSmall = computed(() => {
+    let value = props.name;
+    if (value.length > 15) {
+        value = `${value.slice(0, 4)}...${value.slice(value.length - 5, value.length)}`;
+    }
+    return value;
+});
 
 const valueSmall = computed(() => {
     let value = props.value;
