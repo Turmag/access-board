@@ -24,9 +24,9 @@ export const useAuthStore = defineStore('auth', () => {
 
             if (expDate < today) {
                 await getAccessTokenByRefreshTokenLocal();
+            } else {
+                isAuthorized.value = true;
             }
-
-            isAuthorized.value = true;
         } catch (error) {
             // @ts-expect-error title
             const errorMessage = (error as AxiosError).response?.data?.title as string;
@@ -48,6 +48,7 @@ export const useAuthStore = defineStore('auth', () => {
             accessToken.value = data.access_token;
             refreshToken.value = data.refresh_token;
             await checkAccessToken(isForceGet);
+            isAuthorized.value = true;
         } catch (error) {
             console.error('Ошибка при обновлении токена', error);
             accessToken.value = '';
@@ -64,7 +65,6 @@ export const useAuthStore = defineStore('auth', () => {
         let type = 'success';
 
         try {
-            console.log('path.value', mainStore.path);
             const { data } = await Api.authorize(mainStore.path, password);
             accessToken.value = data.access_token;
             refreshToken.value = data.refresh_token;
