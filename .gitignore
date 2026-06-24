@@ -25,3 +25,4 @@ dist-ssr
 
 api/db_connect.php
 api/demo/db_connect.php
+yarn.lock
