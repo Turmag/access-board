@@ -3,9 +3,9 @@
         <div :class="$style.switch">
             <label :class="$style.label">
                 <input
+                    v-model="isDarkMode"
                     :class="$style.input"
                     type="checkbox"
-                    :checked="!isDarkMode"
                     @change="toggle"
                 >
                 <span :class="$style.slider" />
@@ -101,15 +101,16 @@ const resetStorageDarkMode = () => {
         width: 16px;
         height: 16px;
         border-radius: 50%;
-        background-color: var(--color-text-default);
-        transition: 0.3s;
-        box-shadow: inset 4px -1px 0 0 var(--background-color-default);
-    }
-
-    input:checked ~ .slider::before {
         background-color: var(--background-color-default);
         transform: translateX(22px);
         box-shadow: none;
+        transition: 0.3s;
+    }
+
+    input:checked ~ .slider::before {
+        background-color: var(--color-text-default);
+        box-shadow: inset 4px -1px 0 0 var(--background-color-default);
+        transform: translateX(0);
     }
 
     .themeReset {
