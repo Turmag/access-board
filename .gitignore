@@ -26,3 +26,5 @@ dist-ssr
 api/db_connect.php
 api/demo/db_connect.php
 yarn.lock
+pnpm-lock.yaml
+pnpm-workspace.yaml
