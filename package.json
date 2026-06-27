@@ -45,6 +45,7 @@
         "jwt-decode": "^4.0.0",
         "pinia": "^2.1.3",
         "sass": "^1.83.4",
+        "turmag-vue-components": "^0.0.23",
         "vue": "^3.5.13",
         "vue-multiselect": "^3.0.0-beta.3",
         "vue-router": "^4.1.5",
@@ -60,6 +61,6 @@
         "turmag-eslint-config": "^2.0.70",
         "turmag-stylelint-config": "^0.0.11",
         "typescript": "^5.7.3",
-        "vite": "^7.3.1"
+        "vite": "^7.3.6"
     }
 }
