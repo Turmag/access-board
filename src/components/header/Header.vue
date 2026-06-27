@@ -11,9 +11,7 @@
         <UiText size="fs32" :class="$style.text">
             Доступы к сервисам
         </UiText>
-        <UiFlex align-items="center" gap="g4">
-            <HeaderSwitch />
-        </UiFlex>
+        <UiThemeToggler v-model="isSavedDarkMode" :saved-mode="isSavedDarkMode ? isDarkMode ? 'dark' : 'light' : 'auto'" @toggle="isDarkMode = $event" />
         <SvgIcon
             v-if="authStore.isAuthorized"
             :class="$style.exit"
@@ -27,13 +25,19 @@
 </template>
 
 <script setup lang="ts">
-import HeaderSwitch from '@/components/header/HeaderSwitch.vue';
+import { useStorage } from '@vueuse/core';
+import { UiThemeToggler } from 'turmag-vue-components';
 import {
     SvgIcon,
     UiFlex,
     UiText,
 } from '@/components/kit';
 import { useAuthStore } from '@/stores/useAuth.store';
+import { useMainStore } from '@/stores/useMain.store';
+
+const mainStore = useMainStore();
+const isDarkMode = useStorage(mainStore.darkModeName, false);
+const isSavedDarkMode = useStorage(mainStore.savedDarkModeName, false);
 
 const authStore = useAuthStore();
 
