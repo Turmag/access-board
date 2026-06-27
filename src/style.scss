@@ -9,6 +9,7 @@
     /* Цвета фонов */
     --background-color-default: #fff;
     --background-color-help: #ecf0f1;
+    --background-color-muted: var(--background-color-help);
 
     /* Цвета текста */
     --color-text-default: #0e1b3e;
@@ -35,6 +36,7 @@ body {
         /* Цвета фонов */
         --background-color-default: #171e31;
         --background-color-help: #130f0e;
+        --background-color-muted: var(--background-color-help);
 
         /* Цвета текста */
         --color-text-default: #a3deff;

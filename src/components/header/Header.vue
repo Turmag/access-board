@@ -26,12 +26,12 @@
 
 <script setup lang="ts">
 import { useStorage } from '@vueuse/core';
-import { UiThemeToggler } from 'turmag-vue-components';
 import {
-    SvgIcon,
     UiFlex,
     UiText,
-} from '@/components/kit';
+    UiThemeToggler,
+} from 'turmag-vue-components';
+import { SvgIcon } from '@/components/kit';
 import { useAuthStore } from '@/stores/useAuth.store';
 import { useMainStore } from '@/stores/useMain.store';
 

@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { UiFlex, UiText } from '@/components/kit';
+import { UiFlex, UiText } from 'turmag-vue-components';
 
 interface IProps {
     category: string;

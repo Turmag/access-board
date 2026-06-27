@@ -21,12 +21,13 @@
 
 <script setup lang="ts">
 import { useDebounceFn } from '@vueuse/core';
+import { UiFlex } from 'turmag-vue-components';
 import {
     ref,
     useTemplateRef,
     watch,
 } from 'vue';
-import { SvgIcon, UiFlex } from '@/components/kit';
+import { SvgIcon } from '@/components/kit';
 import { useMainStore } from '@/stores/useMain.store';
 
 const store = useMainStore();

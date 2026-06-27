@@ -36,14 +36,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
 import {
-    SvgIcon,
     UiFlex,
     UiText,
     UiTooltipContent,
     UiTooltipWrapper,
-} from '@/components/kit';
+} from 'turmag-vue-components';
+import { computed } from 'vue';
+import { SvgIcon } from '@/components/kit';
 import { copy } from '@shared/helpers';
 
 interface IProps {

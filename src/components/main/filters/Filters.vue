@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { UiFlex } from '@/components/kit';
+import { UiFlex } from 'turmag-vue-components';
 import FiltersCategoriesSelect from '@/components/main/filters/FiltersCategoriesSelect.vue';
 import FiltersSearch from '@/components/main/filters/FiltersSearch.vue';
 </script>

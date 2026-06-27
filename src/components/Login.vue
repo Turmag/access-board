@@ -7,7 +7,7 @@
             width="wfull"
             padding-block="p40"
             radius="r4"
-            bg="help"
+            bg="muted"
             border-color="default"
             :class="$style.login"
         >
@@ -41,12 +41,9 @@
 </template>
 
 <script setup lang="ts">
+import { UiFlex, UiText } from 'turmag-vue-components';
 import { ref } from 'vue';
-import {
-    SvgIcon,
-    UiFlex,
-    UiText,
-} from '@/components/kit';
+import { SvgIcon } from '@/components/kit';
 import { useAuthStore } from '@/stores/useAuth.store';
 
 const authStore = useAuthStore();
